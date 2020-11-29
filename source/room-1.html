@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Игровая комната">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="preload" href="css/style-min.css" as="style">
+  <!-- <link rel="preload" href="js/site-list.js" as="script"> -->
+  <link rel="preload" href="fonts/oswaldregular.woff2" as="font" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style-min.css">
+  <title>Техасский холдем</title>
+</head>
+
+<body class="page-body">
+  <header class="page-header">
+    <div class="page-header__logo logo">
+      <a href="/" class="logo__text">
+        <span>PokerMan</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="page-main room">
+    <section class="room__table table">
+      <div class="table__body">
+        <p class="table__logo">PokerMan</p>
+
+        <div class="table__field">
+          preflop
+        </div>
+
+        <ul class="table__deck deck">
+          <li class="deck__card card">
+
+          </li>
+          <li class="deck__card card">
+
+          </li>
+          <li class="deck__card card">
+
+          </li>
+          <li class="deck__card card">
+
+          </li>
+          <li class="deck__card card">
+
+          </li>
+        </ul>
+
+        <div class="table__steck">
+          <label class="table__steck-label" for="table-rate">ставка:
+            <input type="text" name="table-rate" value="" id="table-rate">
+          </label>
+
+          <div class="table__steck steck">
+            <ul class="steck__list">
+              <li class="steck__item steck__item--red">
+                5
+              </li>
+              <li class="steck__item steck__item--red">
+                5
+              </li>
+              <li class="steck__item steck__item--red">
+                5
+              </li>
+              <li class="steck__item steck__item--red">
+                5
+              </li>
+            </ul>
+            <ul class="steck__list">
+              <li class="steck__item steck__item--blue">
+                25
+              </li>
+              <li class="steck__item steck__item--blue">
+                25
+              </li>
+              <li class="steck__item steck__item--blue">
+                25
+              </li>
+            </ul>
+            <ul class="steck__list">
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+              <li class="steck__item steck__item--green">
+                100
+              </li>
+            </ul>
+
+            <ul class="steck__list">
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+              <li class="steck__item steck__item--orange">
+                1k
+              </li>
+            </ul>
+          </div>
+
+          <label class="table__steck-label" for="table-steck">стек:
+            <input type="text" name="table-steck" value="">
+          </label>
+
+        </div>
+
+        <ul class="table__players">
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="5">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                    <li class="steck__item steck__item--orange">
+                      1k
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+          <li class="player visually-hidden">
+            <div class="player__container">
+              <div class="player__avatar"></div>
+              <div class="player__data">
+                <input type="text" class="player__name" value="">
+                <input type="text" class="player__cash" value="">
+                <input type="text" class="player__rate" value="">
+                <div class="player__rate-steck steck">
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                    <li class="steck__item steck__item--red">
+                      5
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                    <li class="steck__item steck__item--blue">
+                      25
+                    </li>
+                  </ul>
+                  <ul class="steck__list">
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                    <li class="steck__item steck__item--green">
+                      100
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="player__hand">
+              <div class="player__card card"></div>
+              <div class="player__card card"></div>
+            </div>
+            <div class="player__steck steck">
+              <ul class="steck__list">
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+                <li class="steck__item steck__item--red">
+                  5
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+                <li class="steck__item steck__item--blue">
+                  25
+                </li>
+              </ul>
+              <ul class="steck__list">
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+                <li class="steck__item steck__item--green">
+                  100
+                </li>
+              </ul>
+
+              <ul class="steck__list">
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+                <li class="steck__item steck__item--orange">
+                  1k
+                </li>
+              </ul>
+            </div>
+            <div class="player__diller visually-hidden">D</div>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="room__panel">
+
+      <div class="room__event event">
+        <ul class="event__list">
+          <li class="event__item">
+            <p class="event__text">сообщение чата</p>
+          </li>
+          <li class="event__item">
+            <p class="event__text">сообщение чата</p>
+          </li>
+        </ul>
+      </div>
+      <div class="room__player-controll">
+        <button class="btn">Чек</button>
+        <button class="btn" type="button" name="call">Колл</button>
+        <button class="btn" type="button" name="raise">Рейз</button>
+        <button class="btn" type="button" name="fold">Фолд</button>
+        <button class="btn" type="button" name="test">test</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- <footer class="page-footer">
+    <section class="page-footer__copyright">
+      <a class="page-footer__copyright-link" href="#">Bronepuh</a>
+    </section>
+  </footer> -->
+
+  <script src="js/utils.js"></script>
+  <script src="js/data-cards.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/steps.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+
+</html>

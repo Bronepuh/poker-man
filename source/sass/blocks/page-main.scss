@@ -1,0 +1,36 @@
+.page-main {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  width: 100%;
+}
+
+.page-main__menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: min-content;
+  width: 100%;
+  background: linear-gradient(to bottom, $basic-white 0, $basic-black-2 10%, $basic-black-2 90%, $basic-white 100%)
+}
+
+.page-main__content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.page-main__games {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-basis: auto;
+  width: 75%;
+  border: 4px ridge grey;
+}
+
+.page-main__chat {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  flex-grow: 1;
+  border: 4px ridge grey;
+}

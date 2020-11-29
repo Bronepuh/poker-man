@@ -1,0 +1,39 @@
+.main-menu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.main-menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.main-menu__item {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.main-menu__button {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $basic-black-2;
+  color: $basic-white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  border: 1px solid $basic-white;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 5px rgb(255, 255, 255);
+
+  &:hover {
+    background-color: $basic-orange;
+    color: $basic-black-2;
+  }
+
+}
+

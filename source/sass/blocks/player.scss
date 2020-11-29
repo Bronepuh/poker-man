@@ -1,0 +1,293 @@
+.player {
+  position: absolute;
+  top: -32%;
+  left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 130px;
+  height: auto;
+  padding: 3px;
+  border-radius: 20px;
+  background-color: rgb(0, 0, 0);
+
+  & .player__rate-steck {
+    top: 360%;
+    left: 150%;
+  }
+
+  &:nth-child(2) {
+    left: 70%;
+  }
+
+  &:nth-child(2) .player__container {
+    flex-direction: row-reverse;
+    left: -50%;
+  }
+
+  &:nth-child(2) .player__hand {
+    flex-direction: row-reverse;
+    left: -50%;
+  }
+
+  &:nth-child(2) .player__diller {
+    left: -55%;
+  }
+
+  &:nth-child(2) .player__steck {
+    left: -40%;
+  }
+
+  &:nth-child(2) .player__rate {
+    left: -70%;
+  }
+
+  &:nth-child(2) .player__rate-steck {
+    top: 360%;
+    left: -10%;
+  }
+
+  &:nth-child(3) {
+    top: 25%;
+    left: 100%;
+  }
+
+  &:nth-child(3) .player__container {
+    flex-direction: row-reverse;
+  }
+
+  &:nth-child(3) .player__hand {
+    flex-direction: row-reverse;
+    top: 100%;
+    left: 10%;
+  }
+
+  &:nth-child(3) .player__diller {
+    top: 0;
+    left: -30%;
+  }
+
+  &:nth-child(3) .player__steck {
+    top: 80%;
+    left: -65%;
+  }
+
+  &:nth-child(3) .player__rate {
+    bottom: -250%;
+    left: -140%;
+  }
+
+  &:nth-child(3) .player__rate-steck {
+    top: 225%;
+    left: -80%;
+  }
+
+  &:nth-child(4) {
+    flex-direction: row-reverse;
+    top: 118%;
+    left: 70%;
+  }
+
+  &:nth-child(4) .player__container {
+    flex-direction: row-reverse;
+  }
+
+  &:nth-child(4) .player__hand {
+    flex-direction: row-reverse;
+    top: -110%;
+    left: -50%;
+  }
+
+  &:nth-child(4) .player__diller {
+    top: -220%;
+    left: 20%;
+  }
+
+  &:nth-child(4) .player__steck {
+    top: -235%;
+    left: -40%;
+  }
+
+  &:nth-child(4) .player__rate {
+    bottom: 400%;
+    left: -100%;
+  }
+
+  &:nth-child(4) .player__rate-steck {
+    top: -420%;
+    left: -40%;
+  }
+
+  &:nth-child(5) {
+    top: 118%;
+    left: 5%;
+  }
+
+  &:nth-child(5) .player__hand {
+    flex-direction: row-reverse;
+    top: -110%;
+    left: 70%;
+  }
+
+  &:nth-child(5) .player__diller {
+    top: -220%;
+    left: 140%;
+  }
+
+  &:nth-child(5) .player__steck {
+    top: -235%;
+    left: 85%;
+  }
+
+  &:nth-child(5) .player__rate {
+    bottom: 400%;
+    left: 90%;
+  }
+
+  &:nth-child(5) .player__rate-steck {
+    top: -420%;
+    left: 150%;
+  }
+
+  &:nth-child(6) {
+    flex-direction: row-reverse;
+    top: 25%;
+    left: -25%;
+  }
+
+  &:nth-child(6) .player__hand {
+    top: 100%;
+    left: -10%;
+  }
+
+  &:nth-child(6) .player__diller {
+    top: 320%;
+    left: 110%;
+  }
+
+  &:nth-child(6) .player__steck {
+    top: 80%;
+    left: 115%;
+  }
+
+  &:nth-child(6) .player__rate {
+    bottom: -240%;
+    left: 140%;
+  }
+
+  &:nth-child(6) .player__rate-steck {
+    top: 225%;
+    left: 200%;
+  }
+}
+
+.player__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 20px;
+
+  &--active {
+    box-shadow: 0px 0px 10px rgb(255, 238, 0);
+  }
+}
+
+.player__avatar {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: grey;
+  border: 2px solid rgb(66, 66, 56);
+}
+
+.player__data {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  font-size: 10px;
+}
+
+.player__name {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  height: 15px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+}
+
+.player__cash {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  height: 15px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+}
+
+.player__rate {
+  position: absolute;
+  bottom: -380%;
+  left: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 80%;
+  height: 18px;
+  border: none;
+  background-color: inherit;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.player__hand {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  width: 100%;
+  height: 70px;
+}
+
+.player__card {
+  display: flex;
+  width: 50px;
+  height: 70px;
+  background-color: white;
+  border: 1px solid rgb(90, 90, 90);
+  border-radius: 5px;
+  background-image: url("../img/rubashka.png");
+  background-size: contain;
+
+  &.card {
+    margin-right: 0;
+  }
+}
+
+.player__diller {
+  position: absolute;
+  top: 300%;
+  left: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 50%;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  box-shadow: 0px 0px 10px rgb(255, 238, 0);
+}
+

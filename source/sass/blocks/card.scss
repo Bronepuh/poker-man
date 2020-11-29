@@ -1,0 +1,438 @@
+.card {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 70px;
+  margin-right: 1px;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  background-image: none;
+  text-transform: uppercase;
+  letter-spacing:-2.5px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 3px;
+    left: 3px;
+    text-align: center;
+    width: 15px;
+    padding-top: 13px;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(180, 36, 36);
+    background-image: url("../img/diamond.png");
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: 3px;
+    right: 3px;
+    text-align: center;
+    width: 15px;
+    padding-top: 0;
+    padding-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(180, 36, 36);
+    background-image: url("../img/diamond.png");
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    background-position-y: 100%;
+    background-position-x: 1px;
+  }
+
+  &--close {
+    background-image: url("../img/rubashka.webp");
+    background-size: cover;
+
+    &::before, &::after {
+      display: none;
+    }
+  }
+}
+
+//diamonds
+.d2 {
+  &::before, &::after {
+    content: '2';
+  }
+}
+
+.d3 {
+  &::before, &::after {
+    content: '3';
+  }
+}
+
+.d4 {
+  &::before, &::after {
+    content: '4';
+  }
+}
+
+.d5 {
+  &::before, &::after {
+    content: '5';
+  }
+}
+
+.d6 {
+  &::before, &::after {
+    content: '6';
+  }
+}
+
+.d7 {
+  &::before, &::after {
+    content: '7';
+  }
+}
+
+.d8 {
+  &::before, &::after {
+    content: '8';
+  }
+}
+
+.d9 {
+  &::before, &::after {
+    content: '9';
+  }
+}
+
+.d10 {
+  &::before, &::after {
+    content: '10';
+  }
+}
+
+.dj {
+  &::before, &::after {
+    content: 'j';
+  }
+}
+
+.dq {
+  &::before, &::after {
+    content: 'q';
+  }
+}
+
+.dk {
+  &::before, &::after {
+    content: 'k';
+  }
+}
+
+.da {
+  &::before, &::after {
+    content: 'a';
+  }
+}
+
+//hearts
+.h2 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '2';
+  }
+}
+
+.h3 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '3';
+  }
+}
+
+.h4 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '4';
+  }
+}
+
+.h5 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '5';
+  }
+}
+
+.h6 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '6';
+  }
+}
+
+.h7 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '7';
+  }
+}
+
+.h8 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '8';
+  }
+}
+
+.h9 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '9';
+  }
+}
+
+.h10 {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: '10';
+  }
+}
+
+.hj {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: 'j';
+  }
+}
+
+.hq {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: 'q';
+  }
+}
+
+.hk {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: 'k';
+  }
+}
+
+.ha {
+  &::before, &::after {
+    background-image: url("../img/heart.webp");
+    content: 'a';
+  }
+}
+
+//spides
+.s2 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '2';
+  }
+}
+
+.s3 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '3';
+  }
+}
+
+.s4 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '4';
+  }
+}
+
+.s5 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '5';
+  }
+}
+
+.s6 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '6';
+  }
+}
+
+.s7 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '7';
+  }
+}
+
+.s8 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '8';
+  }
+}
+
+.s9 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '9';
+  }
+}
+
+.s10 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: '10';
+  }
+}
+
+.sj {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: 'j';
+  }
+}
+
+.sq {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: 'q';
+  }
+}
+
+.sk {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: 'k';
+  }
+}
+
+.sa {
+  &::before, &::after {
+    color: black;
+    background-image: url("../../img/spide.webp");
+    content: 'a';
+  }
+}
+
+//clubs
+.c2 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '2';
+  }
+}
+
+.c3 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '3';
+  }
+}
+
+.c4 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '4';
+  }
+}
+
+.c5 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '5';
+  }
+}
+
+.c6 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '6';
+  }
+}
+
+.c7 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '7';
+  }
+}
+
+.c8 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '8';
+  }
+}
+
+.c9 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '9';
+  }
+}
+
+.c10 {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: '10';
+  }
+}
+
+.cj {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: 'j';
+  }
+}
+
+.cq {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: 'q';
+  }
+}
+
+.ck {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: 'k';
+  }
+}
+
+.ca {
+  &::before, &::after {
+    color: black;
+    background-image: url("../img/club.webp");
+    content: 'a';
+  }
+}
