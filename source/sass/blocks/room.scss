@@ -1,0 +1,25 @@
+.room {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+}
+
+.room__table {
+  background-color: rgb(41, 38, 38);
+}
+
+.room__panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.room__player-controll {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  padding-left: 20px;
+  min-height: 100px;
+  border: 4px ridge grey;
+}
