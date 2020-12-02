@@ -74,3 +74,13 @@
   text-decoration: none;
   color: $basic-green;
 }
+
+.games__button-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 25%;
+  border: 1px solid gray;
+  text-decoration: none;
+  color: $basic-white;
+}
