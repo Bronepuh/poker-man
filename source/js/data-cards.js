@@ -76,14 +76,14 @@
     {
       suit: 'diamonds',
       rank: 12,
-      name: 'deuce',
+      name: 'queen',
       className: 'dq',
     },
 
     {
       suit: 'diamonds',
       rank: 13,
-      name: 'deuce',
+      name: 'king',
       className: 'dk',
     },
 
@@ -168,14 +168,14 @@
     {
       suit: 'clubs',
       rank: 12,
-      name: 'deuce',
+      name: 'queen',
       className: 'cq',
     },
 
     {
       suit: 'clubs',
       rank: 13,
-      name: 'deuce',
+      name: 'king',
       className: 'ck',
     },
 
@@ -260,14 +260,14 @@
     {
       suit: 'hearts',
       rank: 12,
-      name: 'deuce',
+      name: 'queen',
       className: 'hq',
     },
 
     {
       suit: 'hearts',
       rank: 13,
-      name: 'deuce',
+      name: 'king',
       className: 'hk',
     },
 
@@ -352,14 +352,14 @@
     {
       suit: 'spides',
       rank: 12,
-      name: 'deuce',
+      name: 'queen',
       className: 'sq',
     },
 
     {
       suit: 'spides',
       rank: 13,
-      name: 'deuce',
+      name: 'king',
       className: 'sk',
     },
 
