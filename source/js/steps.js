@@ -193,7 +193,7 @@
 
         playerControll.classList.add('visually-hidden');
 
-        setTimeout(restart, 20000);
+        setTimeout(restart, 5000);
 
       }
     }
@@ -219,21 +219,23 @@
         winners.push(player);
       } else if (player.flush.length > 0) {
         player.power = player.power + 6000 + player.flush[0].rank;
+        console.log(player.flush);
         winners.push(player);
-      } else if (player.street.length > 0) {
+      } else if (player.street.length > 0 && player.flush.length === 0) {
         player.power = player.power + 5000 + player.street[0].rank;
         winners.push(player);
-      } else if (player.set.length > 0) {
+      } else if (player.set.length > 0 && player.flush.length === 0) {
         player.power = player.power + 4000 + player.set[0].rank + player.kikker[0].rank;
         winners.push(player);
-      } else if (player.couple.length > 2) {
-        player.power = player.power + player.couple[0].rank + player.couple[2].rank + 3000 + player.kikker[0].rank;
+      } else if (player.couple.length > 2 && player.flush.length === 0) {
+        player.power = player.power + Number((player.couple[0].rank * 2) * 10) + Number((player.couple[2].rank * 2) * 10) + player.couple[2].rank + 3000 + player.kikker[0].rank;
         winners.push(player);
-      } else if (player.couple.length === 2) {
-        player.power = player.power + player.couple[0].rank + 2000 + player.kikker[0].rank;
+      } else if (player.couple.length === 2 && player.flush.length === 0) {
+        player.power = player.power + Number((player.couple[0].rank * 2) * 10) + 2000 + player.kikker[0].rank;
         winners.push(player);
-      } else {
-        player.power = player.power + player.hightCard[0].rank;
+      } else if (player.hightCard.length > 0 && player.flush.length === 0) {
+        // player.power = player.power + player.hightCard[0].rank;
+        console.log('WRNING' + player);
         winners.push(player);
       }
     })
@@ -309,14 +311,13 @@
         playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
         winners[0].cash = winners[0].cash + Number(steck);
 
-      } else {
+      } else if (winners[0].power >= 10000) {
         console.log('победил: ' + winners[0].name + ', собрав ROYAL FLUSH!!!');
         eventList.querySelector('.event__text').textContent = 'победил: ' + winners[0].name + ', собрав ROYAL FLUSH!!!'
 
         playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
         winners[0].cash = winners[0].cash + Number(steck);
       }
-
     }
   }
 
@@ -520,6 +521,14 @@
 
     switch (couplesArray.length) {
       case count:
+        if (count === 0) {
+          player.hightCard.push(couplesArray[0]);
+
+          player.hightCard = player.couple.sort(function (card1, card2) {
+            return card2.rank - card1.rank;
+          });
+        }
+
         //пары
         if (count === 2 && player.couple.length == 0) {
           player.couple = couplesArray.concat(player.couple);
@@ -723,8 +732,9 @@
   }
 
   const checkForStreet = function (megaArray, player = player) {
+
+    // стритфлеши и стриты
     if (megaArray[12].length >= 1 && megaArray[11].length >= 1 && megaArray[10].length >= 1 && megaArray[9].length >= 1 && megaArray[8].length >= 1) {
-      console.log(player);
 
       let streetFromAce = [];
 
@@ -1244,18 +1254,33 @@
       megaArray[13].sort(function (card1, card2) {
         return card2.rank - card1.rank;
       });
+      player.flush.push(megaArray[13][0]);
+      player.flush.push(megaArray[13][1]);
+      player.flush.push(megaArray[13][2]);
+      player.flush.push(megaArray[13][3]);
+      player.flush.push(megaArray[13][4]);
       console.log('флешь из ' + megaArray[13][0].suit + ' от ' + megaArray[13][0].name);
 
     } else if (megaArray[14].length >= 5) {
       megaArray[14].sort(function (card1, card2) {
         return card2.rank - card1.rank;
       });
+      player.flush.push(megaArray[14][0]);
+      player.flush.push(megaArray[14][1]);
+      player.flush.push(megaArray[14][2]);
+      player.flush.push(megaArray[14][3]);
+      player.flush.push(megaArray[14][4]);
       console.log('флешь из ' + megaArray[14][0].suit + ' от ' + megaArray[14][0].name);
 
     } else if (megaArray[15].length >= 5) {
       megaArray[15].sort(function (card1, card2) {
         return card2.rank - card1.rank;
       });
+      player.flush.push(megaArray[15][0]);
+      player.flush.push(megaArray[15][1]);
+      player.flush.push(megaArray[15][2]);
+      player.flush.push(megaArray[15][3]);
+      player.flush.push(megaArray[15][4]);
       console.log('флешь из ' + megaArray[15][0].suit + ' от ' + megaArray[15][0].name);
     }
 
@@ -1263,6 +1288,11 @@
       megaArray[16].sort(function (card1, card2) {
         return card2.rank - card1.rank;
       });
+      player.flush.push(megaArray[16][0]);
+      player.flush.push(megaArray[16][1]);
+      player.flush.push(megaArray[16][2]);
+      player.flush.push(megaArray[16][3]);
+      player.flush.push(megaArray[16][4]);
       console.log('флешь из ' + megaArray[16][0].suit + ' от ' + megaArray[16][0].name);
 
     } else {
