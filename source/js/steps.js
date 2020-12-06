@@ -135,6 +135,64 @@
     window.render.renderPlayers(PLAYERS);
   }
 
+    //========================
+
+  //boti
+
+  const changeIndexBot = function (index = 0) {
+
+    let player = PLAYERS[index];
+    player.isActive = true;
+    setActiveClass(index);
+
+    return function (newIndex = index) {
+      index = newIndex;
+      player.isActive = false;
+
+      if (index < PLAYERS.length - 1) {
+        index++;
+      } else {
+        index = 0;
+      }
+      clearActiveStatus();
+      player = PLAYERS[index];
+      player.isActive = true;
+      setActiveClass(index);
+      isBot(player)
+    }
+  }
+
+  const changePlayerBot = changeIndexBot();
+
+  const isBot = function (player) {
+
+    if (player.isBot === true && player.rate === rate) {
+      console.log('zdes ................');
+      setTimeout(setRate, 100);
+      setTimeout(changePlayerBot, 100);
+      setTimeout(checkStepStatus, 100);
+      playerControll.classList.add('visually-hidden');
+    }
+
+    else if (player.isBot === true && player.rate < rate) {
+      console.log('tut ................');
+      setTimeout(setRate, 100);
+      setTimeout(changePlayerBot, 100);
+      setTimeout(checkStepStatus, 100);
+      playerControll.classList.add('visually-hidden');
+    }
+
+    else if (player.isBot === false) {
+      playerControll.classList.remove('visually-hidden');
+      return
+    }
+  }
+
+
+  //==================
+
+  //steps
+
   const checkStepStatus = function () {
     let callArray = []
     for (let i = 0; i < PLAYERS.length; i++) {
@@ -193,11 +251,143 @@
 
         playerControll.classList.add('visually-hidden');
 
-        setTimeout(restart, 5000);
+        setTimeout(restart, 3000);
 
       }
     }
   }
+
+  //stages
+
+  const preFlop = function (index = indexDiller) {
+
+    eventList.querySelector('.event__text').textContent = '';
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      playersList[i].style = '';
+    }
+
+    shaffleDeck();
+    window.render.renderCards(newDeck, TABLE_CARDS);
+
+    rate = START_RATE;
+
+    changeDiller(indexDiller);
+    setRate();
+    changePlayer(index);
+
+    rate = rate * 2;
+
+    setRate();
+    changePlayerBot(indexDiller);
+
+    window.render.renderTable(rate, steck);
+    window.render.renderPlayers(PLAYERS);
+
+  }
+
+  const flop = function () {
+    tableField.textContent = 'flop';
+
+    tableCards[0].style = 'display: flex';
+    tableCards[1].style = 'display: flex';
+    tableCards[2].style = 'display: flex';
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      PLAYERS[i].combination.push(TABLE_CARDS[0]);
+      PLAYERS[i].combination.push(TABLE_CARDS[1]);
+      PLAYERS[i].combination.push(TABLE_CARDS[2]);
+    }
+
+    changePlayer(indexDiller);
+    changePlayerBot(indexDiller);
+
+    window.render.renderTable(rate, steck);
+    window.render.renderPlayers(PLAYERS);
+
+  }
+
+  const tern = function () {
+    tableField.textContent = 'tern';
+
+    tableCards[3].style = 'display: flex';
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      PLAYERS[i].combination.push(TABLE_CARDS[3]);
+    };
+
+    changePlayer(indexDiller);
+    changePlayerBot(indexDiller);
+
+    window.render.renderPlayers(PLAYERS);
+    window.render.renderTable(rate, steck);
+
+  }
+
+  const river = function () {
+    tableField.textContent = 'river';
+
+    tableCards[4].style = 'display: flex';
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      PLAYERS[i].combination.push(TABLE_CARDS[4]);
+    };
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      checkCombination(PLAYERS[i]);
+    };
+
+    changePlayer(indexDiller);
+    changePlayerBot(indexDiller);
+
+    window.render.renderPlayers(PLAYERS);
+    window.render.renderTable(rate, steck);
+
+  };
+
+  const restart = function () {
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      // PLAYERS[i].cash = 5000;
+      PLAYERS[i].rate = 0;
+      PLAYERS[i].isActive = false;
+      PLAYERS[i].isDiller = false;
+      PLAYERS[i].combination = [];
+      PLAYERS[i].hand = [];
+      PLAYERS[i].combination = [];
+      PLAYERS[i].hightCard = [];
+      PLAYERS[i].kikker = [];
+      PLAYERS[i].couple = [];
+      PLAYERS[i].set = [];
+      PLAYERS[i].street = [];
+      PLAYERS[i].flush = [];
+      PLAYERS[i].fullhouse = [];
+      PLAYERS[i].kare = [];
+      PLAYERS[i].streetflush = [];
+      PLAYERS[i].royalflush = [];
+      PLAYERS[i].power = 0;
+    }
+
+    steck = START_RATE;
+    tableField.textContent = 'preflop';
+
+    if (indexDiller < PLAYERS.length - 1) {
+      indexDiller++;
+    } else {
+      indexDiller = 0;
+    }
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      checkCombination(PLAYERS[i]);
+    };
+
+    preFlop(indexDiller);
+    window.render.renderPlayers(PLAYERS);
+    window.render.renderTable(rate, steck);
+  };
+
+
+//=======================================
 
   const checkForWinners = function (players, steck) {
 
@@ -234,8 +424,6 @@
         player.power = player.power + Number((player.couple[0].rank * 2) * 10) + 2000 + player.kikker[0].rank;
         winners.push(player);
       } else if (player.hightCard.length > 0 && player.flush.length === 0) {
-        // player.power = player.power + player.hightCard[0].rank;
-        console.log('WRNING' + player);
         winners.push(player);
       }
     })
@@ -246,7 +434,9 @@
 
     console.log(winners);
 
-    if (winners.length > 0) {
+    //победил один игрок
+
+    if (winners.length > 0 && winners[0].power > winners[1].power) {
 
       if (winners[0].power > 0 && winners[0].power < 100) {
         console.log('победил: ' + winners[0].name + ', собрав старшую карту: ' + winners[0].hightCard[0].name);
@@ -271,7 +461,7 @@
 
       } else if (winners[0].power > 4000 && winners[0].power < 5000) {
         console.log('победил: ' + winners[0].name + ', собрав сет ' + 'из ' + winners[0].set[0].name + ', киккер: ' + winners[0].kikker[0].name);
-        eventList.querySelector('.event__text').textContent = 'победил: ' + winners[0].name + ', собрав сет, ' + 'из ' + winners[0].set[0].name + ', киккер: ' + winners[0].kikker[0].name;
+        eventList.querySelector('.event__text').textContent = 'победил: ' + winners[0].name + ', собрав сет ' + 'из ' + winners[0].set[0].name + ', киккер: ' + winners[0].kikker[0].name;
 
         playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
         winners[0].cash = winners[0].cash + Number(steck);
@@ -318,202 +508,101 @@
         playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
         winners[0].cash = winners[0].cash + Number(steck);
       }
-    }
-  }
 
-  //=================
-  //boti
+      //победили два игрока
+    } else if (winners.length > 0 && winners[0].power === winners[1].power) {
+      if (winners[0].power > 0 && winners[0].power < 100) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав старшую карту: ' + winners[0].hightCard[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав старшую карту: ' + winners[0].hightCard[0].name;
 
-  const changeIndexBot = function (index = 0) {
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
 
-    let player = PLAYERS[index];
-    player.isActive = true;
-    setActiveClass(index);
+      } else if (winners[0].power > 100 && winners[0].power < 3000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + winners[1].name + ', собрав пару, ' + 'из ' + winners[0].couple[0].name + ', киккер: ' + winners[0].kikker[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав пару, ' + ' из ' + winners[0].couple[0].name + ', киккер: ' + winners[0].kikker[0].name;
 
-    return function (newIndex = index) {
-      index = newIndex;
-      player.isActive = false;
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
 
-      if (index < PLAYERS.length - 1) {
-        index++;
-      } else {
-        index = 0;
+      } else if (winners[0].power > 3000 && winners[0].power < 4000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав две пары, ' + 'из ' + winners[0].couple[0].name + ' и ' + winners[0].couple[2].name + ', киккер: ' + winners[0].kikker[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав две пары, ' + ' из ' + winners[0].couple[0].name + ' и ' + winners[0].couple[2].name + ', киккер: ' + winners[0].kikker[0].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 4000 && winners[0].power < 5000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав сет ' + 'из ' + winners[0].set[0].name + ', киккер: ' + winners[0].kikker[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав сет ' + 'из ' + winners[0].set[0].name + ', киккер: ' + winners[0].kikker[0].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 5000 && winners[0].power < 6000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав стрит, ' + 'от: ' + winners[0].street[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав стрит, ' + 'от: ' + winners[0].street[0].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 6000 && winners[0].power < 7000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав флеш, ' + 'от: ' + winners[0].flush[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав флеш, ' + 'от: ' + winners[0].flush[0].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 7000 && winners[0].power < 8000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав фуллхаус, ' + 'из: ' + winners[0].fullhouse[0].name + ' и ' + winners[0].fullhouse[3].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав фуллхаус, ' + 'из: ' + winners[0].fullhouse[0].name + ' и ' + winners[0].fullhouse[3].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 8000 && winners[0].power < 9000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав каре, ' + 'из: ' + winners[0].kare[0].name + ', киккер: ' + winners[0].kikker[0].name);
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав каре, ' + 'из: ' + winners[0].kare[0].name + ', киккер: ' + winners[0].kikker[0].name;
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power > 9000 && winners[0].power < 10000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав стритфлеш, ' + 'от: ' + winners[0].streetflush[0].name);
+        eventList.querySelector('.event__text').textContent = console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав стритфлеш, ' + 'от: ' + winners[0].streetflush[0].name);
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
+
+      } else if (winners[0].power >= 10000) {
+        console.log('победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав ROYAL FLUSH!!!');
+        eventList.querySelector('.event__text').textContent = 'победили: ' + winners[0].name + ' и ' + winners[1].name + ', собрав ROYAL FLUSH!!!'
+
+        playersList[PLAYERS.indexOf(winners[0])].style = 'border: 5px solid orange';
+        playersList[PLAYERS.indexOf(winners[1])].style = 'border: 5px solid orange';
+        winners[0].cash = winners[0].cash + Number(steck / 2);
+        winners[1].cash = winners[1].cash + Number(steck / 2);
       }
-      clearActiveStatus();
-      player = PLAYERS[index];
-      player.isActive = true;
-      setActiveClass(index);
-      isBot(player)
     }
   }
-
-  const changePlayerBot = changeIndexBot();
-
-  const isBot = function (player) {
-
-    if (player.isBot === true) {
-      setTimeout(setRate, 100)
-      setTimeout(changePlayerBot, 100)
-      setTimeout(checkStepStatus, 100)
-      playerControll.classList.add('visually-hidden');
-    } else if (player.isBot === false) {
-      playerControll.classList.remove('visually-hidden');
-    }
-  }
-
-
-
-
-
-
-
-  //==================
-
-
-  const preFlop = function (index = indexDiller) {
-
-    eventList.querySelector('.event__text').textContent = '';
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      playersList[i].style = '';
-    }
-
-    shaffleDeck();
-    window.render.renderCards(newDeck, TABLE_CARDS);
-
-    rate = START_RATE;
-    changeDiller(indexDiller);
-    setRate();
-
-    rate = rate * 2;
-    changePlayer(index);
-    setRate();
-    changePlayerBot(indexDiller);
-
-    // for (let i = 0; i < PLAYERS.length; i++) {
-    //   checkCombination(PLAYERS[i]);
-    // };
-
-    window.render.renderTable(rate, steck);
-    window.render.renderPlayers(PLAYERS);
-
-  }
-
-  const flop = function () {
-    tableField.textContent = 'flop';
-
-    tableCards[0].style = 'display: flex';
-    tableCards[1].style = 'display: flex';
-    tableCards[2].style = 'display: flex';
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      PLAYERS[i].combination.push(TABLE_CARDS[0]);
-      PLAYERS[i].combination.push(TABLE_CARDS[1]);
-      PLAYERS[i].combination.push(TABLE_CARDS[2]);
-    }
-
-    checkCombination(PLAYERS[0]);
-    changePlayer(indexDiller);
-
-    window.render.renderTable(rate, steck);
-    window.render.renderPlayers(PLAYERS);
-
-    // for (let i = 0; i < PLAYERS.length; i++) {
-    //   checkCombination(PLAYERS[i]);
-    // };
-
-    changePlayerBot(indexDiller);
-
-  }
-
-  const tern = function () {
-    tableField.textContent = 'tern';
-
-    tableCards[3].style = 'display: flex';
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      PLAYERS[i].combination.push(TABLE_CARDS[3]);
-    };
-
-    // for (let i = 0; i < PLAYERS.length; i++) {
-    //   checkCombination(PLAYERS[i]);
-    // };
-
-    changePlayer(indexDiller);
-
-    window.render.renderPlayers(PLAYERS);
-    window.render.renderTable(rate, steck);
-
-    changePlayerBot(indexDiller);
-
-  }
-
-  const river = function () {
-    tableField.textContent = 'river';
-
-    tableCards[4].style = 'display: flex';
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      PLAYERS[i].combination.push(TABLE_CARDS[4]);
-    };
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      checkCombination(PLAYERS[i]);
-    };
-
-    changePlayer(indexDiller);
-
-    window.render.renderPlayers(PLAYERS);
-    window.render.renderTable(rate, steck);
-
-    changePlayerBot(indexDiller);
-
-    // checkForWinners(PLAYERS);
-
-  };
-
-  const restart = function () {
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      // PLAYERS[i].cash = 5000;
-      PLAYERS[i].rate = 0;
-      PLAYERS[i].isActive = false;
-      PLAYERS[i].isDiller = false;
-      PLAYERS[i].combination = [];
-      PLAYERS[i].hand = [];
-      PLAYERS[i].combination = [];
-      PLAYERS[i].hightCard = [];
-      PLAYERS[i].kikker = [];
-      PLAYERS[i].couple = [];
-      PLAYERS[i].set = [];
-      PLAYERS[i].street = [];
-      PLAYERS[i].flush = [];
-      PLAYERS[i].fullhouse = [];
-      PLAYERS[i].kare = [];
-      PLAYERS[i].streetflush = [];
-      PLAYERS[i].royalflush = [];
-      PLAYERS[i].power = 0;
-    }
-
-    steck = START_RATE;
-    tableField.textContent = 'preflop';
-
-    if (indexDiller < PLAYERS.length - 1) {
-      indexDiller++;
-    } else {
-      indexDiller = 0;
-    }
-
-    for (let i = 0; i < PLAYERS.length; i++) {
-      checkCombination(PLAYERS[i]);
-    };
-
-    preFlop(indexDiller);
-    window.render.renderPlayers(PLAYERS);
-    window.render.renderTable(rate, steck);
-  };
-
-  //==========
 
   //проверка комбинаций
 
@@ -606,8 +695,17 @@
         break;
     }
 
-
   };
+
+  const checkForHightCard = function (player) {
+    player.combination.sort(function (card1, card2) {
+      return card2.rank - card1.rank;
+    });
+    player.hightCard.push(player.combination[0]);
+    player.hightCard.sort(function (card1, card2) {
+      return card2.rank - card1.rank;
+    });
+  }
 
   const checkForCouples = function (megaArray, player = player) {
     checkForSameRank(megaArray[0], 2, player);
@@ -623,18 +721,6 @@
     checkForSameRank(megaArray[10], 2, player);
     checkForSameRank(megaArray[11], 2, player);
     checkForSameRank(megaArray[12], 2, player);
-
-    //старшая карта
-    if (player.royalflush.length < 1 && player.streetflush.length < 1 && player.kare.length < 1 && player.fullhouse.length < 1 && player.flush.length < 1 && player.street.length < 1 && player.set.length < 1 && player.couple.length < 1) {
-      player.combination.sort(function (card1, card2) {
-        return card2.rank - card1.rank;
-      });
-      player.hightCard.push(player.combination[0]);
-      player.hightCard.sort(function (card1, card2) {
-        return card2.rank - card1.rank;
-      });
-      // console.log('старшая карта ' + player.hightCard[0].name);
-    }
 
     //киккеры
     if (player.royalflush.length < 1 && player.streetflush.length < 1 && player.kare.length < 1 && player.fullhouse.length < 1 && player.flush.length < 1 && player.street.length < 1 && player.set.length > 1 && player.couple.length < 1) {
@@ -712,6 +798,8 @@
         // console.log('kikker :' + player.kikker[0].name);
       }
     }
+
+    checkForHightCard(player);
   }
 
   const checkForSet = function (megaArray, player = player) {
@@ -984,7 +1072,6 @@
           console.log('Пиковый стрит Флеш от десятки');
         } else {
           player.street = streetFromTen;
-          console.log(player);
           console.log('стрит от десятки');
         }
         console.log(streetFromTen);
@@ -1406,27 +1493,47 @@
     checkForFlesh(megaArray, player = player);
   };
 
-  //============
+  //========================================================
+  //buttons
 
-  testButton.addEventListener('click', function () {
-    changePlayer();
-  });
-
-  callButton.addEventListener('click', function () {
+  const callButtonPush = function () {
     setRate();
     changePlayer();
-    // changePlayerBot();
     checkStepStatus();
+  }
 
-  });
-
-  raiseButton.addEventListener('click', function () {
+  const raseButtonPush = function () {
     rate = rate + (rate * 2);
-
     setRate();
     changePlayer();
     changePlayerBot();
     checkStepStatus();
+  }
+
+
+  // testButton.addEventListener('click', function () {
+  //   changePlayer();
+  // });
+
+
+  callButton.addEventListener('click', function () {
+
+    if (PLAYERS[0].isDiller === false) {
+      let index = 0;
+      setRate();
+      changePlayer(index);
+      PLAYERS.forEach(player => {
+        if (player.isActive && player.isBot) {
+          setTimeout(callButtonPush, 500)
+        };
+      })
+    };
+
+    callButtonPush();
+  });
+
+  raiseButton.addEventListener('click', function () {
+    raseButtonPush();
   })
 
   window.steps = {
