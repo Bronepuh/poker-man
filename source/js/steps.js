@@ -318,6 +318,7 @@
         checkForWinners(PLAYERS, steck = steck);
 
         playerControll.classList.add('visually-hidden');
+        clearActiveClasses(playersList);
 
         setTimeout(restart, 5000);
 
