@@ -38,14 +38,22 @@
     } return newDeck;
   }
 
-  const clearClasses = function (playersList) {
+  const clearActiveClasses = function (playersList) {
     playersList.forEach(element => {
       element.querySelector('.player__container').classList.remove('player__container--active')
     });
   };
 
+  const clearFoldClasses = function (playersList) {
+    playersList.forEach(element => {
+      element.querySelector('.player__container').classList.remove('player__container--fold');
+    });
+  };
+
+
+
   const setActiveClass = function (index) {
-    clearClasses(playersList)
+    clearActiveClasses(playersList)
     playersList[index].querySelector('.player__container').classList.add('player__container--active');
   }
 
@@ -53,7 +61,7 @@
     for (let i = 0; i < PLAYERS.length; i++) {
       PLAYERS[i].isActive = false;
     }
-    clearClasses(playersList);
+    clearActiveClasses(playersList);
   }
 
   const changeIndex = function (index = 0) {
@@ -73,6 +81,29 @@
       }
       clearActiveStatus();
       player = PLAYERS[index];
+
+      const foldStatus = function () {
+        if (player.isFold === true) {
+          if (index < PLAYERS.length - 1) {
+            index++;
+          } else {
+            index = 0;
+          }
+          player = PLAYERS[index];
+        }
+      }
+
+      foldStatus();
+      foldStatus();
+      foldStatus();
+      foldStatus();
+      foldStatus();
+
+      if (player.isBot === true) {
+        isBot(player);
+      }
+
+
       player.isActive = true;
       setActiveClass(index);
     }
@@ -93,7 +124,7 @@
     for (let i = 0; i < PLAYERS.length; i++) {
       PLAYERS[i].isActive = false;
     };
-    clearClasses(playersList);
+    clearActiveClasses(playersList);
   };
 
   const setDiller = function () {
@@ -126,7 +157,7 @@
         steck = Number(steck) + Number(PLAYERS[i].rate);
         PLAYERS[i].rate = rate;
       }
-      else if (PLAYERS[i].isActive && PLAYERS[i].rate === rate && !PLAYERS[i].isBot) {
+      else if (PLAYERS[i].isActive && PLAYERS[i].rate === rate) {
         steck = Number(steck);
       }
     }
@@ -135,7 +166,19 @@
     window.render.renderPlayers(PLAYERS);
   }
 
-    //========================
+
+  const checkFoldStatus = function () {
+    for (let i = 0; i < PLAYERS.length; i++) {
+      let player = PLAYERS[i];
+      if (player.isActive === true && player.isFold === false) {
+        player.isFold = true;
+        playersList[i].querySelector('.player__container').classList.add('player__container--fold');
+      }
+    }
+    changePlayer();
+  }
+
+  //========================
 
   //boti
 
@@ -147,7 +190,10 @@
 
     return function (newIndex = index) {
       index = newIndex;
-      player.isActive = false;
+
+      for (let i = 0; i < PLAYERS.length; i++) {
+        player.isActive = false;
+      }
 
       if (index < PLAYERS.length - 1) {
         index++;
@@ -158,7 +204,11 @@
       player = PLAYERS[index];
       player.isActive = true;
       setActiveClass(index);
-      isBot(player)
+      console.log(player.name);
+
+      if (player.isBot === true) {
+        isBot(player)
+      }
     }
   }
 
@@ -166,25 +216,17 @@
 
   const isBot = function (player) {
 
-    if (player.isBot === true && player.rate === rate) {
-      console.log('zdes ................');
+    if (player.isBot === true && player.rate < rate) {
+      console.log('bot');
       setTimeout(setRate, 100);
-      setTimeout(changePlayerBot, 100);
+      setTimeout(changePlayer, 100);
       setTimeout(checkStepStatus, 100);
-      playerControll.classList.add('visually-hidden');
-    }
-
-    else if (player.isBot === true && player.rate < rate) {
-      console.log('tut ................');
-      setTimeout(setRate, 100);
-      setTimeout(changePlayerBot, 100);
-      setTimeout(checkStepStatus, 100);
-      playerControll.classList.add('visually-hidden');
+      // playerControll.classList.add('visually-hidden');
     }
 
     else if (player.isBot === false) {
+      console.log('not bot');
       playerControll.classList.remove('visually-hidden');
-      return
     }
   }
 
@@ -194,10 +236,35 @@
   //steps
 
   const checkStepStatus = function () {
-    let callArray = []
+    let callArray = [];
+    let foldArray = [];
+
+    for (let i = 0; i < PLAYERS.length; i++) {
+      if (PLAYERS[i].isFold === true) {
+        foldArray.push(PLAYERS[i]);
+      }
+    };
+
+    if (foldArray.length === 5) {
+      flop();
+      tern();
+      river();
+      callArray.splice(0, callArray.length);
+      console.log('restart!');
+      for (let i = 0; i < PLAYERS.length; i++) {
+        PLAYERS[i].rate = 0;
+        const playerHand = playersList[i].querySelectorAll('.card');
+        playerHand[0].classList.remove('card--close');
+        playerHand[1].classList.remove('card--close');
+      }
+      checkForWinners(PLAYERS, steck = steck);
+      playerControll.classList.add('visually-hidden');
+      setTimeout(restart, 3000);
+    }
+
     for (let i = 0; i < PLAYERS.length; i++) {
 
-      if (PLAYERS[i].rate === rate) {
+      if (PLAYERS[i].rate === rate || PLAYERS[i].isFold === true) {
         callArray.push(PLAYERS[i]);
       } else if (PLAYERS[i].rate < rate) {
         callArray.splice(0, callArray.length);
@@ -245,6 +312,7 @@
           const playerHand = playersList[i].querySelectorAll('.card');
           playerHand[0].classList.remove('card--close');
           playerHand[1].classList.remove('card--close');
+
         }
 
         checkForWinners(PLAYERS, steck = steck);
@@ -261,6 +329,8 @@
 
   const preFlop = function (index = indexDiller) {
 
+    playerControll.classList.remove('visually-hidden');
+
     eventList.querySelector('.event__text').textContent = '';
 
     for (let i = 0; i < PLAYERS.length; i++) {
@@ -271,15 +341,11 @@
     window.render.renderCards(newDeck, TABLE_CARDS);
 
     rate = START_RATE;
-
     changeDiller(indexDiller);
     setRate();
-    changePlayer(index);
-
     rate = rate * 2;
-
+    changePlayer(indexDiller);
     setRate();
-    changePlayerBot(indexDiller);
 
     window.render.renderTable(rate, steck);
     window.render.renderPlayers(PLAYERS);
@@ -300,7 +366,6 @@
     }
 
     changePlayer(indexDiller);
-    changePlayerBot(indexDiller);
 
     window.render.renderTable(rate, steck);
     window.render.renderPlayers(PLAYERS);
@@ -317,7 +382,6 @@
     };
 
     changePlayer(indexDiller);
-    changePlayerBot(indexDiller);
 
     window.render.renderPlayers(PLAYERS);
     window.render.renderTable(rate, steck);
@@ -338,7 +402,6 @@
     };
 
     changePlayer(indexDiller);
-    changePlayerBot(indexDiller);
 
     window.render.renderPlayers(PLAYERS);
     window.render.renderTable(rate, steck);
@@ -351,6 +414,7 @@
       // PLAYERS[i].cash = 5000;
       PLAYERS[i].rate = 0;
       PLAYERS[i].isActive = false;
+      PLAYERS[i].isFold = false;
       PLAYERS[i].isDiller = false;
       PLAYERS[i].combination = [];
       PLAYERS[i].hand = [];
@@ -381,13 +445,15 @@
       checkCombination(PLAYERS[i]);
     };
 
+    clearFoldClasses(playersList);
+
     preFlop(indexDiller);
     window.render.renderPlayers(PLAYERS);
     window.render.renderTable(rate, steck);
   };
 
 
-//=======================================
+  //=======================================
 
   const checkForWinners = function (players, steck) {
 
@@ -395,6 +461,7 @@
     let winners = [];
 
     players.forEach(player => {
+
       if (player.royalflush.length > 0) {
         player.power = player.power + 10000;
         winners.push(player);
@@ -425,6 +492,9 @@
         winners.push(player);
       } else if (player.hightCard.length > 0 && player.flush.length === 0) {
         winners.push(player);
+      }
+      if (player.isFold === true) {
+        player.power = 0;
       }
     })
 
@@ -1506,35 +1576,39 @@
     rate = rate + (rate * 2);
     setRate();
     changePlayer();
-    changePlayerBot();
     checkStepStatus();
   }
 
 
-  // testButton.addEventListener('click', function () {
-  //   changePlayer();
-  // });
+  testButton.addEventListener('click', function () {
+    changePlayer(0);
+  });
 
 
   callButton.addEventListener('click', function () {
 
-    if (PLAYERS[0].isDiller === false) {
-      let index = 0;
-      setRate();
-      changePlayer(index);
-      PLAYERS.forEach(player => {
-        if (player.isActive && player.isBot) {
-          setTimeout(callButtonPush, 500)
-        };
-      })
-    };
+    console.log('CALL..................');
+    setRate();
+    changePlayer();
+    checkStepStatus();
 
-    callButtonPush();
   });
 
   raiseButton.addEventListener('click', function () {
-    raseButtonPush();
-  })
+
+    console.log('RAISE..................');
+    rate = rate + (rate * 2);
+    setRate();
+    changePlayer();
+    checkStepStatus();
+
+  });
+
+  foldButton.addEventListener('click', function () {
+    console.log('FOLD..................');
+    checkFoldStatus();
+    checkStepStatus();
+  });
 
   window.steps = {
     rate: rate,
