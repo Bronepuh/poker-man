@@ -319,7 +319,7 @@
 
         playerControll.classList.add('visually-hidden');
 
-        setTimeout(restart, 3000);
+        setTimeout(restart, 5000);
 
       }
     }
